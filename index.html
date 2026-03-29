@@ -3,12 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>typeGenerator</title>
+    <title>Type Chaosifier</title>
     <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700&family=Libre+Baskerville:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/npm/p5@2.2.1/lib/p5.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/p5.sound@0.2.0/dist/p5.sound.min.js"></script>
 </head>
 <body>
+    <div id="controls">
+        <input type="text" id="wordInput" placeholder="Type something..." value="CHAOS" maxlength="20" spellcheck="false">
+
+        <div class="control-group">
+            <label>Font</label>
+            <select id="fontSelect">
+                <option value="Audiowide">Audiowide</option>
+                <option value="Bricolage Grotesque">Bricolage Grotesque</option>
+                <option value="Libre Baskerville">Baskerville</option>
+                <option value="Bebas Neue">Bebas Neue</option>
+                <option value="Playfair Display">Playfair Display</option>
+            </select>
+        </div>
+
+        <div class="control-group">
+            <label>Color</label>
+            <input type="color" id="colorPicker" value="#ffffff">
+        </div>
+
+        <div class="control-group">
+            <label>Size <span id="sizeVal">6</span></label>
+            <input type="range" id="sizeSlider" min="2" max="20" value="6">
+        </div>
+
+        <div class="control-group">
+            <label>Speed <span id="speedVal">5</span></label>
+            <input type="range" id="speedSlider" min="1" max="10" value="5">
+        </div>
+
+        <div class="control-group">
+            <label>Shape</label>
+            <div id="shapeButtons">
+                <button class="shape-btn active" data-shape="circle">○</button>
+                <button class="shape-btn" data-shape="triangle">△</button>
+                <button class="shape-btn" data-shape="square">□</button>
+            </div>
+        </div>
+    </div>
+
     <script src="sketch.js"></script>
 </body>
 </html>
