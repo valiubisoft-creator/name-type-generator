@@ -5,8 +5,9 @@ let t = 0;
 let particleColor = '#ffffff';
 let particleSize = 6;
 let fontSize = 200;
-let letterTracking = 0; // px, maps to canvas letterSpacing
-let particleSpeed = 1.0; // slider 1-10 maps to 0.2-2.0
+let letterTracking = 0;    // px, maps to canvas letterSpacing
+let particleSpeed = 1.0;   // slider 1-10 maps to 0.2-2.0
+let particleDisplacement = 4; // slider 1-10; maps to lerp 0.22→0.01 (high = more drift)
 let shapeType = 'circle';
 let effectType = 'none';
 let selectedFont = 'Unbounded';
@@ -126,6 +127,11 @@ function setupControls() {
         document.getElementById('sizeVal').textContent = this.value;
     });
 
+    document.getElementById('displacementSlider').addEventListener('input', function () {
+        particleDisplacement = parseInt(this.value);
+        document.getElementById('displacementVal').textContent = this.value;
+    });
+
     document.getElementById('speedSlider').addEventListener('input', function () {
         particleSpeed = parseInt(this.value) * 0.2;
         document.getElementById('speedVal').textContent = this.value;
@@ -185,8 +191,10 @@ class Particle {
         vel.mult(particleSpeed);
         this.pos.add(vel);
 
-        this.pos.x = lerp(this.pos.x, this.origin.x, 0.06);
-        this.pos.y = lerp(this.pos.y, this.origin.y, 0.06);
+        // Lerp strength mapped inversely: high displacement = low lerp = more drift
+        let lerpStrength = map(particleDisplacement, 1, 10, 0.22, 0.01);
+        this.pos.x = lerp(this.pos.x, this.origin.x, lerpStrength);
+        this.pos.y = lerp(this.pos.y, this.origin.y, lerpStrength);
     }
 
     draw() {
