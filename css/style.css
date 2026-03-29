@@ -13,82 +13,169 @@ canvas {
     display: block;
 }
 
-/* ─── Controls panel ──────────────────────────────────────────────────────── */
+/* ─── Left rail ─────────────────────────────────────────────────────────────*/
 
-#controls {
+#rail {
     position: fixed;
-    bottom: 28px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    top: 0;
+    width: 270px;
+    height: 100vh;
     display: flex;
-    align-items: center;
-    gap: 20px;
-    background: rgba(12, 12, 12, 0.88);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 14px;
-    padding: 14px 22px;
+    flex-direction: column;
+    background: rgba(10, 10, 10, 0.93);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-right: 1px solid rgba(255, 255, 255, 0.07);
+    overflow-y: auto;
+    overflow-x: hidden;
     z-index: 100;
-    white-space: nowrap;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.1) transparent;
 }
 
-/* Word input */
-
-#wordInput {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    color: #fff;
-    font-size: 18px;
-    font-family: 'Arial Black', Arial, sans-serif;
-    font-weight: 900;
-    letter-spacing: 0.05em;
-    width: 180px;
-    outline: none;
-    padding: 4px 2px;
-    transition: border-color 0.2s;
+#rail::-webkit-scrollbar {
+    width: 4px;
+}
+#rail::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
 }
 
-#wordInput::placeholder {
-    color: rgba(255, 255, 255, 0.25);
-    font-weight: 400;
+/* ─── Brand ──────────────────────────────────────────────────────────────── */
+
+#brand {
+    padding: 22px 20px 18px;
+    font-family: 'Audiowide', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    flex-shrink: 0;
 }
 
-#wordInput:focus {
-    border-bottom-color: rgba(255, 255, 255, 0.7);
+/* ─── Sections ───────────────────────────────────────────────────────────── */
+
+.rail-section {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    flex-shrink: 0;
 }
 
-/* Shared control group */
+.rail-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.07);
+    flex-shrink: 0;
+}
+
+.section-label {
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.22);
+}
+
+/* ─── Control groups ─────────────────────────────────────────────────────── */
 
 .control-group {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 7px;
 }
 
 .control-group label {
-    color: rgba(255, 255, 255, 0.45);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
     font-family: Arial, sans-serif;
     font-size: 10px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.42);
 }
 
-/* Dividers between groups */
-
-.control-group + .control-group {
-    padding-left: 20px;
-    border-left: 1px solid rgba(255, 255, 255, 0.08);
+.val {
+    font-variant-numeric: tabular-nums;
+    color: rgba(255, 255, 255, 0.55);
+    letter-spacing: 0;
+    text-transform: none;
 }
 
-/* Color picker */
+/* ─── Word input ─────────────────────────────────────────────────────────── */
+
+#wordInput {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 7px;
+    color: #fff;
+    font-size: 15px;
+    font-family: 'Arial Black', Arial, sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    width: 100%;
+    outline: none;
+    padding: 8px 10px;
+    transition: border-color 0.2s;
+}
+
+#wordInput::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+    font-weight: 400;
+}
+
+#wordInput:focus {
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* ─── Font select ────────────────────────────────────────────────────────── */
+
+#fontSelect {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 7px;
+    color: #fff;
+    font-size: 12px;
+    padding: 7px 28px 7px 10px;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='rgba(255,255,255,0.3)'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    transition: border-color 0.15s;
+}
+
+#fontSelect:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+#fontSelect option {
+    background: #1a1a1a;
+    color: #fff;
+}
+
+/* ─── Sliders ────────────────────────────────────────────────────────────── */
+
+input[type="range"] {
+    width: 100%;
+    accent-color: #fff;
+    cursor: pointer;
+    height: 3px;
+}
+
+/* ─── Color picker ───────────────────────────────────────────────────────── */
 
 #colorPicker {
-    width: 38px;
-    height: 28px;
+    width: 44px;
+    height: 32px;
     border: none;
-    border-radius: 6px;
+    border-radius: 7px;
     cursor: pointer;
     background: none;
     padding: 0;
@@ -100,70 +187,25 @@ canvas {
 
 #colorPicker::-webkit-color-swatch {
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 5px;
-}
-
-/* Font select */
-
-#fontSelect {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 6px;
-    color: #fff;
-    font-size: 12px;
-    padding: 4px 8px;
-    cursor: pointer;
-    outline: none;
-    appearance: none;
-    -webkit-appearance: none;
-    /* Custom caret arrow */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='rgba(255,255,255,0.4)'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 8px center;
-    padding-right: 24px;
-    transition: border-color 0.15s;
 }
 
-#fontSelect:hover {
-    border-color: rgba(255, 255, 255, 0.5);
-}
+/* ─── Toggle button rows (shape + effect) ────────────────────────────────── */
 
-#fontSelect option {
-    background: #1a1a1a;
-    color: #fff;
-}
-
-/* Size slider */
-
-#sizeSlider {
-    width: 90px;
-    accent-color: #fff;
-    cursor: pointer;
-}
-
-/* Speed slider */
-
-#speedSlider {
-    width: 90px;
-    accent-color: #fff;
-    cursor: pointer;
-}
-
-/* Shape buttons */
-
-#shapeButtons {
+.btn-row {
     display: flex;
     gap: 6px;
 }
 
-.shape-btn {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 6px;
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 16px;
-    width: 34px;
-    height: 28px;
+.tog-btn,
+.effect-btn {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 7px;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 15px;
+    height: 34px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -172,13 +214,41 @@ canvas {
     line-height: 1;
 }
 
-.shape-btn:hover {
-    border-color: rgba(255, 255, 255, 0.5);
-    color: rgba(255, 255, 255, 0.8);
+.effect-btn {
+    font-size: 11px;
+    letter-spacing: 0.03em;
 }
 
-.shape-btn.active {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.6);
+.tog-btn:hover,
+.effect-btn:hover {
+    border-color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.tog-btn.active,
+.effect-btn.active {
+    background: rgba(255, 255, 255, 0.13);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: #fff;
+}
+
+/* ─── Screenshot button ──────────────────────────────────────────────────── */
+
+#screenshotBtn {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    padding: 11px 0;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+#screenshotBtn:hover {
+    background: rgba(255, 255, 255, 0.14);
     color: #fff;
 }

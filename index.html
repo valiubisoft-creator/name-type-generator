@@ -13,44 +13,96 @@
     <script src="https://cdn.jsdelivr.net/npm/p5@2.2.1/lib/p5.min.js"></script>
 </head>
 <body>
-    <div id="controls">
-        <input type="text" id="wordInput" placeholder="Type something..." value="CHAOS" maxlength="20" spellcheck="false">
 
-        <div class="control-group">
-            <label>Font</label>
-            <select id="fontSelect">
-                <option value="Audiowide">Audiowide</option>
-                <option value="Bricolage Grotesque">Bricolage Grotesque</option>
-                <option value="Libre Baskerville">Baskerville</option>
-                <option value="Bebas Neue">Bebas Neue</option>
-                <option value="Playfair Display">Playfair Display</option>
-            </select>
-        </div>
+    <nav id="rail">
+        <div id="brand">Type Generator</div>
 
-        <div class="control-group">
-            <label>Color</label>
-            <input type="color" id="colorPicker" value="#ffffff">
-        </div>
+        <!-- Typography -->
+        <div class="rail-section">
+            <div class="section-label">Typography</div>
 
-        <div class="control-group">
-            <label>Size <span id="sizeVal">6</span></label>
-            <input type="range" id="sizeSlider" min="2" max="20" value="6">
-        </div>
+            <div class="control-group">
+                <label>Word</label>
+                <input type="text" id="wordInput" placeholder="Type something..." value="chaos" maxlength="20" spellcheck="false">
+            </div>
 
-        <div class="control-group">
-            <label>Speed <span id="speedVal">5</span></label>
-            <input type="range" id="speedSlider" min="1" max="10" value="5">
-        </div>
+            <div class="control-group">
+                <label>Font</label>
+                <select id="fontSelect">
+                    <option value="Audiowide">Audiowide</option>
+                    <option value="Bricolage Grotesque">Bricolage Grotesque</option>
+                    <option value="Libre Baskerville">Baskerville</option>
+                    <option value="Bebas Neue">Bebas Neue</option>
+                    <option value="Playfair Display">Playfair Display</option>
+                </select>
+            </div>
 
-        <div class="control-group">
-            <label>Shape</label>
-            <div id="shapeButtons">
-                <button class="shape-btn active" data-shape="circle">○</button>
-                <button class="shape-btn" data-shape="triangle">△</button>
-                <button class="shape-btn" data-shape="square">□</button>
+            <div class="control-group">
+                <label>Font Size <span class="val" id="fontSizeVal">200</span></label>
+                <input type="range" id="fontSizeSlider" min="60" max="450" value="200">
+            </div>
+
+            <div class="control-group">
+                <label>Tracking <span class="val" id="trackingVal">0</span></label>
+                <input type="range" id="trackingSlider" min="-20" max="120" value="0">
             </div>
         </div>
-    </div>
+
+        <div class="rail-divider"></div>
+
+        <!-- Particles -->
+        <div class="rail-section">
+            <div class="section-label">Particles</div>
+
+            <div class="control-group">
+                <label>Particle Size <span class="val" id="sizeVal">6</span></label>
+                <input type="range" id="sizeSlider" min="2" max="20" value="6">
+            </div>
+
+            <div class="control-group">
+                <label>Speed <span class="val" id="speedVal">5</span></label>
+                <input type="range" id="speedSlider" min="1" max="10" value="5">
+            </div>
+
+            <div class="control-group">
+                <label>Color</label>
+                <input type="color" id="colorPicker" value="#ffffff">
+            </div>
+        </div>
+
+        <div class="rail-divider"></div>
+
+        <!-- Style -->
+        <div class="rail-section">
+            <div class="section-label">Style</div>
+
+            <div class="control-group">
+                <label>Shape</label>
+                <div class="btn-row">
+                    <button class="tog-btn active" data-shape="circle">○</button>
+                    <button class="tog-btn" data-shape="triangle">△</button>
+                    <button class="tog-btn" data-shape="square">□</button>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>Effect</label>
+                <div class="btn-row">
+                    <button class="effect-btn active" data-effect="none">None</button>
+                    <button class="effect-btn" data-effect="glow">Glow</button>
+                    <button class="effect-btn" data-effect="extrude">Depth</button>
+                    <button class="effect-btn" data-effect="aura">Aura</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="rail-divider"></div>
+
+        <!-- Actions -->
+        <div class="rail-section">
+            <button id="screenshotBtn">↓ Download PNG</button>
+        </div>
+    </nav>
 
     <script src="sketch.js"></script>
 </body>
