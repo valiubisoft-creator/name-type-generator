@@ -9,7 +9,7 @@ let letterTracking = 0; // px, maps to canvas letterSpacing
 let particleSpeed = 1.0; // slider 1-10 maps to 0.2-2.0
 let shapeType = 'circle';
 let effectType = 'none';
-let selectedFont = 'Audiowide';
+let selectedFont = 'Unbounded';
 
 const MAX_PARTICLES = 2000;
 const SAMPLE_STEP = 4;
@@ -26,11 +26,11 @@ function setup() {
 
     // Preload all fonts eagerly so switching is instant
     const allFonts = [
-        'Audiowide',
-        'Bricolage Grotesque',
-        'Libre Baskerville',
-        'Bebas Neue',
-        'Playfair Display'
+        'Great Vibes',
+        'Unbounded',
+        'Space Mono',
+        'Press Start 2P',
+        'Rye'
     ];
     const preloads = allFonts.map(f => document.fonts.load(`bold 200px "${f}"`));
 
